@@ -1,0 +1,32 @@
+body{
+  margin: 0;
+  padding: 0;
+  font-size: 15px;
+  background: #F2F2F2;
+}
+nav{
+  background-color: #333;
+  margin: 0;
+  overflow: hidden;
+}
+nav ul{
+  margin: 0;
+  padding: 0;
+}
+nav ul li {
+  display: inline-block;
+  list-style-type: none;
+}
+
+nav > ul > li > a{
+  color: #aaa;
+  display: block;
+  line-height: 2em;
+  padding: 0.5em 1.5em;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: larger;
+}
+nav ul li.logout{
+  float: right;
+}

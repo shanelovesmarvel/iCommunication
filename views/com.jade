@@ -1,0 +1,27 @@
+extends clayout
+
+block content
+    section.post
+       div.alert.alert-danger(ng-show = 'is_error') {{message}}
+       div.alert.alert-success(ng-show = 'is_success') {{message}} 
+       ol.breadcrumb
+         li One-one Communication
+         li(ng-model='signInUserName') {{ signInUserName }}
+         li(ng-model='infoTitle') {{ infoTitle }}
+       form.com_form(name='EditComForm')
+            div
+               label(for='project') Project
+               select(id='project' placeholder='Select a project' ng-model='com.project' 
+               　　　ng-options='option.name for option in selectData.availableOptions | orderBy:option.name track by option.id' required)
+                  option(value='' disabled selected style='display:none;') Select a project
+            div
+               label(for='subject') Subject
+               input(type='text' id='subject' placeholder='Subject' ng-model='com.subject' required)
+            div
+               label(for='starttime') Start Time
+               input(type='datetime-local' id='starttime' placeholder='Start Time' ng-model='com.starttime' required)
+            div
+               label(for='endtime') End Time
+               input(type='datetime-local' id='endtime' placeholder='End Time' ng-model='com.endtime' required)  
+            button.btn.btn-success(type='submit' ng-click='save(com)') Save  
+            button.btn.btn-success(style="margin-left: 190px;" ng-click='back()') Back        

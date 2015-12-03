@@ -1,0 +1,12 @@
+extends clayout
+
+block content
+    nav(ng-controller='LogOutController')
+      ul
+        li
+          a(href='' ng-click='main()') iCommunication
+        li.logout(ng-show='isLoggedIn')
+          a(href='' ng-click='logout()') Log out
+    div(ng-view)  
+     
+

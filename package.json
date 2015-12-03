@@ -1,0 +1,37 @@
+{
+  "name": "iCommunication",
+  "description": "An app to create a communication.",
+  "author": "Shane",
+  "version": "1.0.1",
+  "repository": "https://github.com/zhao125787935/iCommunication",
+  "license": "MIT",
+  "peerDependencies": {
+    "mongodb": "1.4.x"
+  },
+  "scripts": {
+    "start": "node --harmony server.js"
+  },
+  "dependencies": {
+    "angular": "^1.4.8",
+    "angular-bootstrap-datetimepicker": "^0.4.0",
+    "bootstrap": "^3.3.6",
+    "co-body": "0.0.1",
+    "co-monk": "^1.0.0",
+    "co-views": "~0.1.0",
+    "jade": "^1.11.0",
+    "koa": "~0.2.0",
+    "koa-bodyparser": "^2.0.1",
+    "koa-jade-render": "^1.0.0",
+    "koa-logger": "~1.1.0",
+    "koa-route": "~1.0.2",
+    "koa-router": "^5.3.0",
+    "koa-static": "^1.5.2",
+    "koa-static-folder": "^0.1.5",
+    "mongodb": "~1.4.x",
+    "monk": "^1.0.1",
+    "path": "^0.12.7"
+  },
+  "engines": {
+    "node": ">= 0.11.9"
+  }
+}

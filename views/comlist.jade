@@ -1,0 +1,30 @@
+extends clayout
+
+block content
+    section.post
+       div.alert.alert-danger(ng-show = 'is_error') {{message}}
+       div.alert.alert-success(ng-show = 'is_success') {{message}}
+       ol.breadcrumb
+         li One-one Communication
+         li(ng-model='signInUserName') {{ signInUserName }}
+       a.btn.btn-success(href='#/com' style="margin-bottom: 15px;" ng-show='canShow') Create a communication
+
+       table.table.table-condensed.table-hover
+          thead
+              tr
+                 th English Name
+                 th Project
+                 th Subject
+                 th Start Time
+                 th End Time
+                 th Action
+          tbody 
+              tr(ng-repeat = "com in coms | orderBy: 'starttime'")
+                 td(ng-dblclick='queryCom(com._id,com.username)') {{com.username}}
+                 td(ng-dblclick='queryCom(com._id,com.username)') {{com.project.name}}
+                 td(ng-dblclick='queryCom(com._id,com.username)') {{com.subject}}
+                 td(ng-dblclick='queryCom(com._id,com.username)') {{com.starttime | date:'short' }}
+                 td(ng-dblclick='queryCom(com._id,com.username)') {{com.endtime | date:'short' }}
+                 td 
+                   a.btn.btn-success.btn-xs(ng-href='#/info' ng-click='queryInfo(com._id, com.username)' ng-model='com.actionName' style="width:120px;") {{ com.actionName }}
+                   button.btn.btn-danger.btn-xs(ng-click='cancelCom(com._id, com.username)' style="margin-left:20px;") Cancel
