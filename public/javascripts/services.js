@@ -1,15 +1,5 @@
 
-app.factory('CostService', function($http){
-	return{
-		list:function(){
-			return $http.get(options.api.base_url  + '/cost/list');
-		},
-		create:function(cost){
-			return $http.post(options.api.base_url + '/cost/new');
-		}
-	};
-});
-
+// Authentication service
 app.factory('AuthenticationService', function(){
 	var auth = {
 		isAuthenticated : false ,
@@ -18,39 +8,47 @@ app.factory('AuthenticationService', function(){
 	return auth;
 });
 
+//Communication Service, manage to send to request to server.
 app.factory('ComService', function($http){
 	return {
-		saveCom:function(com){
-			return $http.post(options.api.base_url + '/com/save', {com: com});
+		saveCom:function(com, token){
+			return $http.post(options.api.base_url + '/com/save', {com: com, token: token});
 		},
 
-		list:function(){
-			return $http.get(options.api.base_url  + '/com/list');
+		list:function(token){
+			return $http.post(options.api.base_url  + '/com/list', {token: token});
 		},
 
-		queryCom:function(id){
-			return $http.post(options.api.base_url + '/com/query' ,{id: id });
+		queryCom:function(id, token){
+			return $http.post(options.api.base_url + '/com/query' ,{id: id, token: token});
 		},
 
-		delete:function(id){
-			return $http.post(options.api.base_url + '/com/delete', {id: id});
+		delete:function(id, token){
+			return $http.post(options.api.base_url + '/com/delete', {id: id, token: token});
 		},
 
-		saveInfo:function(pinfo){
-			return $http.post(options.api.base_url + '/info/save', {pinfo: pinfo});
+		saveInfo:function(pinfo, token){
+			return $http.post(options.api.base_url + '/info/save', {pinfo: pinfo, token: token});
 		},
 
-		queryInfo:function(username){
-			return $http.post(options.api.base_url + '/info/query', {username: username} );
+		queryInfo:function(username, token){
+			return $http.post(options.api.base_url + '/info/query', {username: username, token: token});
 		},
-
-		tagComInfo:function(id, isAdded){
-			return $http.post(options.api.base_url + '/com/tag', {id: id, isAdded:isAdded});
+		tagComInfo:function(id, isAdded, token){
+			return $http.post(options.api.base_url + '/com/tag/info/added', {id: id, isAdded:isAdded, token: token});
+		},
+		tagComDeleted: function(id, inputValue, token){
+			return $http.post(options.api.base_url + '/com/tag/com/deleted', {id: id, 
+				isDeletedByAdmin: true, reason: inputValue, token: token});
+		},
+		tagComReverted: function(id, token){
+			return $http.post(options.api.base_url + '/com/tag/com/reverted', {id: id, 
+				isDeletedByAdmin: false , token: token});
 		}
 	};
 });
 
-
+// User service.
 app.factory('UserService', function($http){
 	return{
 		logIn:function(username, password){
@@ -59,6 +57,8 @@ app.factory('UserService', function($http){
 	};
 });
 
+
+// Remember me service, not finished, to be done.
 app.factory('$remember', function(){
 	function fetchValue(name){
 		var cookieValue = document.cookie.split("; ");
@@ -97,10 +97,12 @@ app.factory('$remember', function(){
        }
 });
 
+
+// Share service, mainly to transfer data between controllers.
 app.factory('ShareService', function(){
 	var username = '';
-	var comId = '';
-	var comData = {};
+	var comId = ''; // Communication ID;
+	var comData = {};  // Communication data;
 	return {
 		getSharedData:function(){
 			return username;

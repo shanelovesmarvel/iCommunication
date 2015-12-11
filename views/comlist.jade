@@ -1,13 +1,17 @@
-extends clayout
+extends layout
 
 block content
-    section.post
+    section.communication
        div.alert.alert-danger(ng-show = 'is_error') {{message}}
        div.alert.alert-success(ng-show = 'is_success') {{message}}
        ol.breadcrumb
          li One-one Communication
          li(ng-model='signInUserName') {{ signInUserName }}
+         li(ng-show='isAdmin' ng-model='avaliableCom' ) {{ avaliableCom }}
        a.btn.btn-success(href='#/com' style="margin-bottom: 15px;" ng-show='canShow') Create a communication
+       .btn-group(ng-show = 'isAdmin')
+           a.btn.btn-success(href='#/comlist' style="margin-bottom: 15px;") Avaliable
+           a.btn.btn-danger(href='#/comlist_canceled' style="margin-botton: 15px;") Canceled
 
        table.table.table-condensed.table-hover
           thead

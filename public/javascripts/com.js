@@ -9,12 +9,16 @@ app.config(['$locationProvider','$routeProvider',
 	function($location, $routeProvider){
 		$routeProvider.
 		   when('/',{
-		   	templateUrl:'/shane',
+		   	templateUrl:'/login',
 		   	controller: 'LogInController'
 		   }).
 		   when('/comlist',{
 		   	 templateUrl:'/comlist',
 		   	 controller:'ComlistController'
+		   }).
+		   when('/comlist_canceled',{
+		   	 templateUrl:'/comlist_canceled',
+		   	 controller:'ComCanceledListController'
 		   }).
 		   when('/com',{
 		   	 templateUrl:'/com',

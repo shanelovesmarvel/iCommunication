@@ -4,12 +4,12 @@ var logger = require('koa-logger');
 var router = require('koa-router')();
 var parse = require('co-body');
 var serve = require('koa-static');
-var jade  = require('koa-jade-render');
 var path  = require('path');
 var bodyparser = require('koa-bodyparser');
-
 var views = require('co-views');
 var path  = require('path');
+var jwt = require('koa-jwt');
+
 
 var render= views(__dirname + '/views', { map: { html: 'jade' }});
 
@@ -22,25 +22,31 @@ app.use(serve('./node_modules'));
 app.use(logger());
 app.use(bodyparser());
 
-router.get('/', function *(next){
+router.get('/', function *(){
      this.body = yield render('nav.jade', { title: 'iCommunication' });
 });
 
-router.get('/shane', function *(next){
+router.get('/login', function *(){
      this.body = yield render('login.jade', { title: 'iCommunication' });
 });
 
-router.get('/com', function *(next){
+router.get('/com', function *(){
     this.body = yield render('com.jade', {title: 'iCommunication'});
 });
 
-router.get('/comlist', function *(next){
+router.get('/comlist', function *(){
      this.body = yield render('comlist.jade', {title: 'iCommunication'});
 });
 
-router.get('/info', function *(next){
+router.get('/info', function *(){
      this.body = yield render('personal_info.jade', {title: 'iCommunication'});
 });
+
+router.get('/comlist_canceled',function *(){
+	 this.body = yield render('comlist_canceled.jade', {title: 'iCommunication'});
+})
+
+app.use(jwt({ secret: 'shared-secret' , passthrough: true}));
 
 // route middleware
 var user = require('./routes/user');
@@ -56,3 +62,5 @@ app.use(router.routes());
 // http server listening
 app.listen(8080);
 console.log('listening on port 8080');
+
+module.exports = app;

@@ -21,12 +21,11 @@
     "jade": "^1.11.0",
     "koa": "~0.2.0",
     "koa-bodyparser": "^2.0.1",
-    "koa-jade-render": "^1.0.0",
+    "koa-jwt": "^1.1.1",
     "koa-logger": "~1.1.0",
     "koa-route": "~1.0.2",
     "koa-router": "^5.3.0",
     "koa-static": "^1.5.2",
-    "koa-static-folder": "^0.1.5",
     "mongodb": "~1.4.x",
     "monk": "^1.0.1",
     "path": "^0.12.7"

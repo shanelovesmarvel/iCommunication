@@ -1,4 +1,4 @@
-extends clayout
+extends layout
 
 block content
     .login-box
@@ -8,10 +8,5 @@ block content
         form#loginbox.new_user(accept-charset='UTF-8', method='post', data-ng-controller='LogInController')
            input#loginUserName.form-control.top(autofocus='autofocus', placeholder='English Name', type='text',data-ng-model='user.username' required)
            input#loginPassword.form-control.bottom(placeholder='Password', type='password', data-ng-model='user.password' required)
-           .remember-me.checkbox
-              label(for='user_remember_me')
-                 input(name='remember', type='hidden', value='0')
-                 input#user_remember_me(type='checkbox', value='1', data-ng-model='user.remember')
-                 span Remember me
            div
             input#loginBtn.btn.btn-save(ng-click='logIn(user.username, user.password, user.remember)', type='submit', value='Sign in')
