@@ -60,7 +60,7 @@ router.use('/info', info.routes());
 app.use(router.routes());
 
 // http server listening
-app.listen(8080);
-console.log('listening on port 8080');
+app.listen(3931);
+console.log('listening on port 3931');
 
 module.exports = app;

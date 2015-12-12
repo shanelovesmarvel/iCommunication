@@ -3,7 +3,7 @@ var app = angular.module('kamn',['ngRoute','LocalStorageModule','ui.bootstrap.da
 
 var options = {};
 options.api = {};
-options.api.base_url = "http://localhost:8080";
+options.api.base_url = "http://192.168.71.40:3931";
 
 app.config(['$locationProvider','$routeProvider',
 	function($location, $routeProvider){

@@ -27,5 +27,5 @@ block content
             div
                label(for='join') Join Date
                input(type='date' id='join' placeholder='Join Date' ng-model='pinfo.join' ng-readonly='isOwnInfo' required)  
-            button.btn.btn-success(type='submit' ng-click='saveInfo(pinfo)') Save  
+            button.btn.btn-success(type='submit' ng-click='saveInfo(pinfo)' ng-disabled='isOwnInfo') Save  
             button.btn.btn-success(ng-click='back()' style="margin-left: 190px;") Back 
