@@ -119,24 +119,13 @@ app.controller('ComController',['$scope','$rootScope','$location','$window','$ro
             }
         }
 
-        function isSameDay(date1, date2){
-            return date1.getDate() == date2.getDate() && 
-                   date1.getMonth() == date2.getMonth() &&
-                   date1.getFullYear() == date2.getFullYear();
-        }
 
         function formatDate(date){
            return $filter('date')(date, 'yyyy/MM/dd HH:mm');
         }
 
-        $scope.$watch("comForm.$dirty", function(newValue){
-           $scope.com.isDirty = $scope.com.isDirty || newValue;
-        });
 
        $scope.back = function back(){
-           if($scope.com.isDirty){
-              console.log('=============');
-           }
            ShareService.setComId('');
            $location.path('/comlist');
        }        
