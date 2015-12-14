@@ -6,26 +6,26 @@ block content
          li One-one Communication
          li(ng-model='personName') {{ personName }}
          li(ng-model='infoTitle') {{ infoTitle }}
-       form.com_form(name='AddPersonalInfoForm')
-            div
-               label(for='cnName') Chinese Name
-               input(type='text' id='cnName' placeholder='Chinese Name' ng-model='pinfo.cname' ng-readonly='isOwnInfo' required)
-            div
-               label(for='age') Age
-               input(type='number' id='age' placeholder='Age' ng-model='pinfo.age' ng-readonly='isOwnInfo' required)                      
-            div
-               label(for='marital') Marital Status
-               select(id='marital' ng-model='pinfo.marital'  ng-disabled='isOwnInfo' 
+       form.info_form(name='AddPersonalInfoForm')
+            div.form-group
+               label.control-label(for='cnName') Chinese Name:
+               input.form-control(type='text' id='cnName' placeholder='Chinese Name' ng-model='pinfo.cname' ng-readonly='isOwnInfo' required)
+            div.form-group
+               label.control-label(for='age') Age:
+               input.form-control(type='number' id='age' placeholder='Age' ng-model='pinfo.age' ng-readonly='isOwnInfo' required)                      
+            div.form-group
+               label.control-label(for='marital') Marital Status: (婚姻状况)
+               select.form-control(id='marital' ng-model='pinfo.marital'  ng-disabled='isOwnInfo' 
                　　　ng-options='option.name for option in maritalStatus.availableOptions | orderBy:option.name track by option.id' required)
                   option(value='' disabled selected style='display:none;') Select a status
-            div
-               label(for='hometown') Hometown
-               input(type='text' id='hometown' placeholder='Hometown' ng-model='pinfo.hometown' ng-readonly='isOwnInfo' required)
-            div
-               label(for='hobby') Hobby
-               input(type='text' id='hobby' placeholder='Hobby' ng-model='pinfo.hobby' ng-readonly='isOwnInfo' required)
-            div
-               label(for='join') Join Date
-               input(type='date' id='join' placeholder='Join Date' ng-model='pinfo.join' ng-readonly='isOwnInfo' required)  
-            button.btn.btn-success(type='submit' ng-click='saveInfo(pinfo)' ng-disabled='isOwnInfo') Save  
-            button.btn.btn-success(ng-click='back()' style="margin-left: 190px;") Back 
+            div.form-group
+               label.control-label(for='hometown') Hometown:
+               input.form-control(type='text' id='hometown' placeholder='Hometown' ng-model='pinfo.hometown' ng-readonly='isOwnInfo' required)
+            div.form-group
+               label.control-label(for='hobby') Hobby:
+               input.form-control(type='text' id='hobby' placeholder='Hobby' ng-model='pinfo.hobby' ng-readonly='isOwnInfo' required)
+            div.form-group
+               label.control-label(for='join') Join Date:
+               input.form-control(type='date' id='join' placeholder='Join Date' ng-model='pinfo.join' ng-readonly='isOwnInfo' required)  
+            button.btn.btn-success(type='submit' ng-click='saveInfo(pinfo)') Save  
+            button.btn.btn-success(ng-click='back()' style="margin-left: 275px;") Back 

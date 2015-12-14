@@ -8,20 +8,34 @@ block content
          li One-one Communication
          li(ng-model='signInUserName') {{ signInUserName }}
          li(ng-model='infoTitle') {{ infoTitle }}
-       form.com_form(name='EditComForm')
-            div
-               label(for='project') Project
-               select(id='project' placeholder='Select a project' ng-model='com.project' 
+       form.com_form(name='EditComForm' role='form')
+            div.form-group
+               label.control-label(for='project') Project:
+               select.form-control(id='project' placeholder='Select a project' ng-model='com.project' 
                　　　ng-options='option.name for option in selectData.availableOptions | orderBy:option.name track by option.id' required)
                   option(value='' disabled selected style='display:none;') Select a project
-            div
-               label(for='subject') Subject
-               input(type='text' id='subject' placeholder='Subject' ng-model='com.subject' required)
-            div
-               label(for='starttime') Start Time
-               input(type='datetime-local' id='starttime' placeholder='Start Time' ng-model='com.starttime' required)
-            div
-               label(for='endtime') End Time
-               input(type='datetime-local' id='endtime' placeholder='End Time' ng-model='com.endtime' required)  
+            div.form-group
+               label.control-label(for='subject') Subject:
+               input.form-control(type='text' id='subject' placeholder='Subject' ng-model='com.subject' required)
+            div.form-group
+               label.control-label(for='starttime') Start Time:
+               div.dropdown
+                 a.dropdown-toggle(id='dropdown1' role='button' data-toggle='dropdown' data-target='#')
+                   div.input-group
+                      input.form-control(type="text" data-ng-model="com.starttime" placeholder="Click to choose start time" id="starttime" required)
+                      span.input-group-addon
+                          i.glyphicon.glyphicon-calendar
+                 ul.dropdown-menu(role="menu" aria-labelledby="dLabel")
+                   datetimepicker(data-ng-model="com.starttime" data-datetimepicker-config="{ dropdownSelector: '#dropdown1'}") 
+            div.form-group
+               label.control-label(for='endtime') End Time:
+               div.dropdown
+                 a.dropdown-toggle(id='dropdown2' role='button' data-toggle='dropdown' data-target='#')
+                   div.input-group
+                      input.form-control(type="text" data-ng-model="com.endtime" placeholder="Click to choose end time" id="endtime" required)
+                      span.input-group-addon
+                          i.glyphicon.glyphicon-calendar
+                 ul.dropdown-menu(role="menu" aria-labelledby="dLabel")
+                   datetimepicker(data-ng-model="com.endtime" data-datetimepicker-config="{ dropdownSelector: '#dropdown2'}")                
             button.btn.btn-success(type='submit' ng-click='save(com)') Save  
-            button.btn.btn-success(style="margin-left: 190px;" ng-click='back()') Back        
+            button.btn.btn-success(style="margin-left: 255px;" ng-click='back()') Back        

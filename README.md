@@ -1,7 +1,10 @@
 iCommunication
 ==============
+Auther: Shane (Guigang Zhao)
 
-An app to create a communication. Using KoaJS,AngularJS,MongoDB and NodeJS.i
+
+An app to create a communication. Using KoaJS,AngularJS,MongoDB and NodeJS which I call it KAMN stack.
+Also I used a lot of styles in Bootstrap.
 
 <h3>How to set up and config mongodb</h3>
 

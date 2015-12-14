@@ -1,26 +1,33 @@
-app.controller('ComController',['$scope','$rootScope','$location','$window','$route', 'ComService', 'AuthenticationService', 'ShareService',
-    function ComController($scope,$rootScope,$location,$window,$route, ComService, AuthenticationService, ShareService){     
+app.controller('ComController',['$scope','$rootScope','$location','$window','$route', '$filter','ComService', 'AuthenticationService', 'ShareService',
+    function ComController($scope,$rootScope,$location,$window,$route, $filter, ComService, AuthenticationService, ShareService){     
         $scope.signInUserName = $window.sessionStorage.getItem('username');
 
         $scope.selectData = {
             availableOptions: [
-               {id:'1', name: 'Mainframe WebUI'},
-               {id:'2', name: 'MicroFlow'},
-               {id:'3', name: 'API Exchange'},
-               {id:'4', name: 'BW6 Admin'},
-               {id:'5', name: 'Loglogic Unity'},
-               {id:'6', name: 'Simplr'},
+               {id:'1', name: 'API Exchange'},
+               {id:'2', name: 'BW6 Admin'},
+               {id:'3', name: 'BPM'},
+               {id:'4', name: 'BrownBag'},
+               {id:'5', name: 'Cloud Docs'},
+               {id:'6', name: 'LogLogic'},
                {id:'7', name: 'MDM'},
-               {id:'8', name: 'Cloud Doc'}                           
+               {id:'8', name: 'MF WebUI'},
+               {id:'9', name: 'MicroFlow'},
+               {id:'10', name: 'QCells'},
+               {id:'11', name: 'Simplr'},
+               {id:'12', name: 'Simplr Backend'},
+               {id:'13', name: 'None'}                         
             ]
         }
 
-         $scope.save = function save(com){
-            if(com != undefined){
-                com.username = $window.sessionStorage.getItem('username');
-                //com.isExisted = com._id != null;
-                var currentTime = new Date();
-          if(com.project != null && com.subject != null){
+      $scope.save = function save(com){
+          if(com != undefined){
+              com.username = $window.sessionStorage.getItem('username');
+              //com.isExisted = com._id != null;
+              var currentTime = new Date();
+              var existedStartTime = '';
+              var existedEndTime = '';
+              if(com.project != null && com.subject != null){
                 if(com.starttime < currentTime || com.endtime < currentTime){
                      swal({ 
                         title:"",  
@@ -45,7 +52,9 @@ app.controller('ComController',['$scope','$rootScope','$location','$window','$ro
                         var rowData = comData[i];
                         var rowEndtime = new Date(rowData.endtime);
                         var rowStarttime = new Date(rowData.starttime);
-                        if(com.endtime > rowStarttime && com.endtime < rowEndtime){
+                        existedStartTime = rowStarttime;
+                        existedEndTime = rowEndtime;
+                        if(com.endtime >= rowStarttime && com.endtime <= rowEndtime){
                             isAvailabe = false;
                             break;
                         }else if(com.starttime < rowEndtime && com.endtime > rowEndtime){
@@ -69,9 +78,10 @@ app.controller('ComController',['$scope','$rootScope','$location','$window','$ro
                         });
                     }else{
                       swal({ 
-                        title:"",  
-                        text: "This time is unavailable, please choose another time!",   
-                        timer: 5000,   
+                        title:"This time is unavailable!",  
+                        type: 'warning',
+                        text: "A Communication from "+ formatDate(existedStartTime)+" to "+ formatDate(existedEndTime) + ' already exists.' ,   
+                        timer: 20000,   
                         showConfirmButton: true ,
                         confirmButtonColor: "#4cae4c"
                       });                         
@@ -112,6 +122,10 @@ app.controller('ComController',['$scope','$rootScope','$location','$window','$ro
             return date1.getDate() == date2.getDate() && 
                    date1.getMonth() == date2.getMonth() &&
                    date1.getFullYear() == date2.getFullYear();
+        }
+
+        function formatDate(date){
+           return $filter('date')(date, 'yyyy/MM/dd HH:mm');
         }
 
        $scope.back = function back(){
