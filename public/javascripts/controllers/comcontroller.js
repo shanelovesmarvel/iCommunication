@@ -54,7 +54,7 @@ app.controller('ComController',['$scope','$rootScope','$location','$window','$ro
                         var rowStarttime = new Date(rowData.starttime);
                         existedStartTime = rowStarttime;
                         existedEndTime = rowEndtime;
-                        if(com.endtime >= rowStarttime && com.endtime <= rowEndtime){
+                        if(!ShareService.isEdit() && (com.endtime >= rowStarttime && com.endtime <= rowEndtime)){
                             isAvailabe = false;
                             break;
                         }else if(com.starttime < rowEndtime && com.endtime > rowEndtime){
@@ -64,13 +64,14 @@ app.controller('ComController',['$scope','$rootScope','$location','$window','$ro
                             isAvailabe = false;
                             break;
                             //Compare start time and end time if equals to each other.
-                        }else if(com.starttime.getTime() == rowStarttime.getTime() && com.endtime.getTime() ==rowEndtime.getTime()){
+                        }else if(!ShareService.isEdit() && (com.starttime.getTime() == rowStarttime.getTime() && com.endtime.getTime() ==rowEndtime.getTime())){
                             isAvailabe = false;
                             break;
                         }
                     }
                     if(isAvailabe){
                         ComService.saveCom(com, $window.sessionStorage.token).success(function(data){
+                            ShareService.setEdit(false);
                             $location.path('/comlist');
                         }).error(function(status, data){
                             console.log(status);
@@ -128,7 +129,14 @@ app.controller('ComController',['$scope','$rootScope','$location','$window','$ro
            return $filter('date')(date, 'yyyy/MM/dd HH:mm');
         }
 
+        $scope.$watch("comForm.$dirty", function(newValue){
+           $scope.com.isDirty = $scope.com.isDirty || newValue;
+        });
+
        $scope.back = function back(){
+           if($scope.com.isDirty){
+              console.log('=============');
+           }
            ShareService.setComId('');
            $location.path('/comlist');
        }        

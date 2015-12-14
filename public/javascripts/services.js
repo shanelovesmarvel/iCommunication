@@ -103,6 +103,7 @@ app.factory('ShareService', function(){
 	var username = '';
 	var comId = ''; // Communication ID;
 	var comData = {};  // Communication data;
+	var isEdit = false;
 	return {
 		getSharedData:function(){
 			return username;
@@ -121,6 +122,12 @@ app.factory('ShareService', function(){
 		},
 		getComData:function(){
 			return comData;
+		},
+		setEdit:function(status){
+			isEdit = status;
+		},
+		isEdit:function(){
+			return isEdit;
 		}
 	}
 });

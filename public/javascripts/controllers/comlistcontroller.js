@@ -44,10 +44,10 @@ app.controller('ComlistController',['$scope','$rootScope','$location','localStor
                       if(localStorageService.get('isAdmin')){
                            com.actionName = 'View Personal Info';
                       }else{
-                         if(com.isAdded){
-                              com.actionName = 'View Personal Info'; 
+                         if(isSignInUser && !com.isAdded){
+                            com.actionName = 'Add Personal Info';
                          }else{
-                              com.actionName = 'Add Personal Info';
+                            com.actionName = 'View Personal Info';
                          }
                       }  
                    }
@@ -148,6 +148,7 @@ app.controller('ComlistController',['$scope','$rootScope','$location','localStor
 //=================================================================================================
         $scope.queryCom = function queryCom(comId, username){
             if(username == $window.sessionStorage.getItem('username')){
+              ShareService.setEdit(true);
               ShareService.setComId(comId);
               $location.path('/com');  
             } else{
