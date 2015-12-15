@@ -22,9 +22,9 @@ app.controller('ComlistController',['$scope','$rootScope','$location','localStor
         	$scope.coms = data;
             for(var i = data.length- 1 ; i >= 0; i--){
                 var com = data[i]; 
-                var starttime = new Date(com.starttime);
+                var endtime = new Date(com.endtime);
                 //Never show the out-of-date communication.
-                if(currentTime > starttime){
+                if(currentTime > endtime){
                     $scope.coms.splice(i, 1);
                 }else{
                    var isSignInUser = com.username == $window.sessionStorage.getItem('username');                 
