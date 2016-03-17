@@ -1,5 +1,5 @@
-app.controller('InfoController',['$scope','$rootScope','$location','$window','$route', 'ComService', 'AuthenticationService', 'ShareService',
-    function InfoController($scope,$rootScope,$location,$window,$route, ComService, AuthenticationService, ShareService){
+app.controller('InfoController',['$scope','$rootScope','$location','$window','$route', 'ComService', 'ShareService',
+    function InfoController($scope,$rootScope,$location,$window,$route, ComService, ShareService){
         $scope.maritalStatus = {
             availableOptions: [
                {id:'1', name: 'Married'},

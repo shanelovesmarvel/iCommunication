@@ -1,5 +1,5 @@
-app.controller('LogInController',['$scope','$rootScope','$location','$window','localStorageService','UserService', 'AuthenticationService','$remember',
-	function LogInController($scope,$rootScope, $location,$window,localStorageService,UserService, AuthenticationService, $remember){
+app.controller('LogInController',['$scope','$rootScope','$location','$window','localStorageService','UserService',
+	function LogInController($scope,$rootScope, $location,$window,localStorageService,UserService){
 
 		$scope.logIn = function login(username, password){
         localStorageService.clearAll();
@@ -24,8 +24,8 @@ app.controller('LogInController',['$scope','$rootScope','$location','$window','l
 
 	}]);
 
-app.controller('LogOutController',['$scope','$rootScope','$location','$window','localStorageService','$route','UserService', 'AuthenticationService',
-    function LogOutController($scope,$rootScope, $location,$window,localStorageService,$route,UserService, AuthenticationService){
+app.controller('LogOutController',['$scope','$rootScope','$location','$window','localStorageService','$route','UserService', 'LoadJsonService',
+    function LogOutController($scope,$rootScope, $location,$window,localStorageService,$route,UserService, LoadJsonService){
         $scope.logout = function logout(){
             if(localStorageService.get('isLogged')){
                 localStorageService.set('isLogged', false);

@@ -17,6 +17,7 @@ var app = koa();
 
 app.use(serve('./public'));
 app.use(serve('./node_modules'));
+app.use(serve('./config'));
 
 // middleware
 app.use(logger());
@@ -60,7 +61,7 @@ router.use('/info', info.routes());
 app.use(router.routes());
 
 // http server listening
-app.listen(3931);
-console.log('listening on port 3931');
+app.listen(5373);
+console.log('listening on port 5373');
 
 module.exports = app;

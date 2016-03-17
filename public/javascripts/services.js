@@ -1,13 +1,4 @@
 
-// Authentication service
-app.factory('AuthenticationService', function(){
-	var auth = {
-		isAuthenticated : false ,
-		isAdmin : false
-	}
-	return auth;
-});
-
 //Communication Service, manage to send to request to server.
 app.factory('ComService', function($http){
 	return {
@@ -56,7 +47,6 @@ app.factory('UserService', function($http){
 		}
 	};
 });
-
 
 // Remember me service, not finished, to be done.
 app.factory('$remember', function(){

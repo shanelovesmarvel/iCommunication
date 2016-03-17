@@ -1,24 +1,10 @@
-app.controller('ComController',['$scope','$rootScope','$location','$window','$route', '$filter','ComService', 'AuthenticationService', 'ShareService',
-    function ComController($scope,$rootScope,$location,$window,$route, $filter, ComService, AuthenticationService, ShareService){     
+app.controller('ComController',['$scope','$rootScope','$http','$location','$window','$route', '$filter','ComService', 'ShareService',
+    function ComController($scope,$rootScope,$http,$location,$window,$route, $filter, ComService, ShareService){     
         $scope.signInUserName = $window.sessionStorage.getItem('username');
 
-        $scope.selectData = {
-            availableOptions: [
-               {id:'1', name: 'API Exchange'},
-               {id:'2', name: 'BW6 Admin'},
-               {id:'3', name: 'BPM'},
-               {id:'4', name: 'BrownBag'},
-               {id:'5', name: 'Cloud Docs'},
-               {id:'6', name: 'LogLogic'},
-               {id:'7', name: 'MDM'},
-               {id:'8', name: 'MF WebUI'},
-               {id:'9', name: 'MicroFlow'},
-               {id:'10', name: 'QCells'},
-               {id:'11', name: 'Simplr'},
-               {id:'12', name: 'Simplr Backend'},
-               {id:'13', name: 'None'}                         
-            ]
-        }
+        $http.get('project.json').success(function(data) {
+               $scope.selectData = data;
+        });
 
       $scope.save = function save(com){
           if(com != undefined){
