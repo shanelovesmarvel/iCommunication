@@ -7,7 +7,6 @@ var serve = require('koa-static');
 var path  = require('path');
 var bodyparser = require('koa-bodyparser');
 var views = require('co-views');
-var path  = require('path');
 var jwt = require('koa-jwt');
 
 
@@ -45,7 +44,7 @@ router.get('/info', function *(){
 
 router.get('/comlist_canceled',function *(){
 	 this.body = yield render('comlist_canceled.jade', {title: 'iCommunication'});
-})
+});
 
 app.use(jwt({ secret: 'shared-secret' , passthrough: true}));
 

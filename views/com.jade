@@ -11,8 +11,9 @@ block content
        form.com_form(name='comForm' role='form')
             div.form-group
                label.control-label(for='project') Project:
-               select.form-control(id='project' placeholder='Select a project' ng-model='com.project' 
-               　　　ng-options='option.name for option in selectData.availableOptions | orderBy:option.name track by option.id' required)
+               select.form-control(id='project' placeholder='Select a project' ng-model='com.project'
+               ng-options='option.name for option in selectData.availableOptions | orderBy:option.name track by option.id'
+               required)
                   option(value='' disabled selected style='display:none;') Select a project
             div.form-group
                label.control-label(for='subject') Subject:

@@ -24,8 +24,8 @@ app.controller('LogInController',['$scope','$rootScope','$location','$window','l
 
 	}]);
 
-app.controller('LogOutController',['$scope','$rootScope','$location','$window','localStorageService','$route','UserService', 'LoadJsonService',
-    function LogOutController($scope,$rootScope, $location,$window,localStorageService,$route,UserService, LoadJsonService){
+app.controller('LogOutController',['$scope','$rootScope','$location','$window','localStorageService','$route','UserService',
+    function LogOutController($scope,$rootScope, $location,$window,localStorageService,$route,UserService){
         $scope.logout = function logout(){
             if(localStorageService.get('isLogged')){
                 localStorageService.set('isLogged', false);

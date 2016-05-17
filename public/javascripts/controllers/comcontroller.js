@@ -111,7 +111,7 @@ app.controller('ComController',['$scope','$rootScope','$http','$location','$wind
         }
 
 
-       $scope.back = function back(){
+       $scope.back = function(){
            ShareService.setComId('');
            $location.path('/comlist');
        }        

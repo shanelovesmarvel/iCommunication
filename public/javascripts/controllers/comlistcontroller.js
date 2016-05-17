@@ -163,14 +163,14 @@ app.controller('ComlistController',['$scope','$rootScope','$location','localStor
                 }
                 return;
             }      
-        }
+        };
 
 //==================================================================================================
         $scope.queryInfo = function queryInfo(comId, username){
             ShareService.setComId(comId);
             ShareService.setSharedData(username);
             $location.path('/info');
-        }
+        };
 
 //===================================================================================================        
         function hideMessage(isError, delay){
@@ -196,8 +196,8 @@ app.controller('ComlistController',['$scope','$rootScope','$location','localStor
 
 
 
-app.controller('ComCanceledListController',['$scope','$rootScope','$location','localStorageService','$window','$timeout','$route', 'ComService', 'AuthenticationService', 'ShareService',
-  function ComlistController($scope,$rootScope,$location,localStorageService,$window,$route,$timeout, ComService, AuthenticationService, ShareService){
+app.controller('ComCanceledListController',['$scope','$rootScope','$location','localStorageService','$window','$timeout','$route', 'ComService', 'ShareService',
+  function ComlistController($scope,$rootScope,$location,localStorageService,$window,$route,$timeout, ComService, ShareService){
        $scope.signInUserName = $window.sessionStorage.getItem('username');
         $scope.coms = [];
         ComService.list($window.sessionStorage.token).success(function(data){
